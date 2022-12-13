@@ -1,13 +1,15 @@
 import datetime as dt
 
+"""Comments on functions must be in the form of docstrings in accordance with Docstring Conventions""" 
 
 class Record:
-    def __init__(self, amount, comment, date=''):
+    def __init__(self, amount, comment, date=''): 
+        """ Best practice: add a comment clarifying that date must be in the format '13.12.2022' for example """
         self.amount = amount
         self.date = (
             dt.datetime.now().date() if
             not
-            date else dt.datetime.strptime(date, '%d.%m.%Y').date())
+            date else dt.datetime.strptime(date, '%d.%m.%Y').date()) 
         self.comment = comment
 
 
@@ -16,13 +18,14 @@ class Calculator:
         self.limit = limit
         self.records = []
 
-    def add_record(self, record):
-        self.records.append(record)
+    def add_record(self, record): 
+        """Best practice: add a comment clarifying that record must be of type Record """
 
+        self.records.append(record)
     def get_today_stats(self):
         today_stats = 0
         for Record in self.records:
-            if Record.date == dt.datetime.now().date():
+            if Record.date == dt.datetime.now().date(): 
                 today_stats = today_stats + Record.amount
         return today_stats
 
@@ -78,4 +81,6 @@ class CashCalculator(Calculator):
                                                      currency_type)
 
     def get_week_stats(self):
-        super().get_week_stats()
+        super().get_week_stats() 
+        """ You missed adding the word 'return'. The correct line is:
+            return super().get_week_stats() """
